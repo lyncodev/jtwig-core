@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
         jcenter()
         maven {
@@ -26,9 +27,10 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
     jcenter()
+
     maven {
         url "http://dl.bintray.com/jtwig/maven"
     }
@@ -42,6 +44,7 @@ dependencies {
     compile 'org.parboiled:parboiled-java:1.1.7'
     compile 'org.slf4j:slf4j-api:1.7.12'
     compile 'com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.2'
+    compile 'org.jtwig:jtwig-parsing:1.0.3'
 
     testCompile 'commons-io:commons-io:2.4'
     testCompile 'org.mockito:mockito-core:1.10.19'
