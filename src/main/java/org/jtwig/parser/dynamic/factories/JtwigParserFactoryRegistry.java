@@ -7,17 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JtwigParserFactoryRegistry {
-    private final List<JtwigParserFactory> factories;
+    private final List<JtwigNodeParserFactory> factories;
 
     public JtwigParserFactoryRegistry() {
         this.factories = new ArrayList<>();
     }
 
-    public JtwigParserFactoryRegistry include () {
-
+    public JtwigParserFactoryRegistry include (JtwigNodeParserFactory factory) {
+        factories.add(factory);
+        return this;
     }
 
     public List<SequenceMatcher> create(ParserConfiguration configuration) {
-        return null;
+        ArrayList<SequenceMatcher> sequenceMatchers = new ArrayList<>();
+        for (JtwigNodeParserFactory factory : factories) {
+            sequenceMatchers.add(factory.create(configuration));
+        }
+        return sequenceMatchers;
     }
 }

@@ -1,7 +1,8 @@
 package org.jtwig.parser.dynamic.config;
 
 public class ParserConfigurationBuilder {
-    public CodeIslandConfiguration codeIslandConfiguration;
+    private  CodeIslandConfiguration codeIslandConfiguration;
+    private String trimWhiteSpace;
 
     public ParserConfigurationBuilder () {}
     public ParserConfigurationBuilder (ParserConfiguration prototype) {
@@ -10,6 +11,11 @@ public class ParserConfigurationBuilder {
 
     public ParserConfigurationBuilder withCodeIslandConfiguration(CodeIslandConfiguration codeIslandConfiguration) {
         this.codeIslandConfiguration = codeIslandConfiguration;
+        return this;
+    }
+
+    public ParserConfigurationBuilder withTrimWhiteSpace(String trimWhiteSpace) {
+        this.trimWhiteSpace = trimWhiteSpace;
         return this;
     }
 

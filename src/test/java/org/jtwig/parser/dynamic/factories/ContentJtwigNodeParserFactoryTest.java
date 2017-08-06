@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class ContentJtwigParserFactoryTest {
+public class ContentJtwigNodeParserFactoryTest {
     private ContentJtwigParserFactory underTest = new ContentJtwigParserFactory();
 
     @Test

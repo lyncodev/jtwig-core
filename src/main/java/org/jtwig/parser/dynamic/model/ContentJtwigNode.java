@@ -1,9 +1,12 @@
 package org.jtwig.parser.dynamic.model;
 
-public class ContentJtwigNode implements JtwigNode {
+import org.jtwig.parser.dynamic.model.position.Position;
+
+public class ContentJtwigNode extends JtwigNode {
     private final String content;
 
-    public ContentJtwigNode(String content) {
+    public ContentJtwigNode(Position position, String content) {
+        super(position);
         this.content = content;
     }
 

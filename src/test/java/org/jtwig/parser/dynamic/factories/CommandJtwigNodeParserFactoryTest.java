@@ -3,6 +3,7 @@ package org.jtwig.parser.dynamic.factories;
 import org.jtwig.parser.dynamic.IntegrationTestUtils;
 import org.jtwig.parser.dynamic.config.ParserConfiguration;
 import org.jtwig.parser.dynamic.factories.command.CommandDefinitionJtwigParserFactory;
+import org.jtwig.parser.dynamic.factories.control.IsTrimWhiteSpaceParserFactory;
 import org.jtwig.parser.dynamic.model.CommandJtwigNode;
 import org.jtwig.parser.dynamic.model.command.JtwigCommandDefinition;
 import org.jtwig.parsing.sequence.SequenceMatchers;
@@ -14,8 +15,8 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class CommandJtwigParserFactoryTest {
-    private CommandJtwigParserFactory underTest = new CommandJtwigParserFactory(new MyCommandParser(), isTrimWhiteSpaceParserFactory);
+public class CommandJtwigNodeParserFactoryTest {
+    private CommandJtwigParserFactory underTest = new CommandJtwigParserFactory(new MyCommandParser(), new IsTrimWhiteSpaceParserFactory());
 
     @Test
     public void noTrim() throws Exception {
