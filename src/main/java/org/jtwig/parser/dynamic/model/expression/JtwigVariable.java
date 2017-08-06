@@ -1,9 +1,12 @@
 package org.jtwig.parser.dynamic.model.expression;
 
-public class JtwigVariable implements JtwigExpression {
+import org.jtwig.parsing.model.Range;
+
+public class JtwigVariable extends JtwigExpression {
     private final String name;
 
-    public JtwigVariable(String name) {
+    public JtwigVariable(Range range, String name) {
+        super(range);
         this.name = name;
     }
 

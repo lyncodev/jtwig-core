@@ -7,16 +7,11 @@ import org.jtwig.parser.dynamic.factories.control.IsTrimWhiteSpaceParserFactory;
 import org.jtwig.parser.dynamic.model.CommandJtwigNode;
 import org.jtwig.parser.dynamic.model.command.JtwigCommandDefinition;
 import org.jtwig.parser.dynamic.model.control.TagWhiteSpaceControl;
-import org.jtwig.parser.dynamic.model.position.Position;
 import org.jtwig.parsing.sequence.TransformSequenceMatcher;
 import org.jtwig.parsing.transform.ListTransformationRequest;
 import org.jtwig.parsing.transform.Transformations;
 
-import static org.jtwig.parsing.sequence.SequenceMatchers.position;
-import static org.jtwig.parsing.sequence.SequenceMatchers.sequence;
-import static org.jtwig.parsing.sequence.SequenceMatchers.skipWhitespaces;
-import static org.jtwig.parsing.sequence.SequenceMatchers.string;
-import static org.jtwig.parsing.sequence.SequenceMatchers.transform;
+import static org.jtwig.parsing.sequence.SequenceMatchers.*;
 
 public class CommandJtwigParserFactory implements JtwigNodeParserFactory<CommandJtwigNode> {
     private final CommandDefinitionJtwigParserFactory commandParser;
@@ -31,21 +26,19 @@ public class CommandJtwigParserFactory implements JtwigNodeParserFactory<Command
     public TransformSequenceMatcher<CommandJtwigNode> create(ParserConfiguration configuration) {
         return transform(
                 sequence(
-                        position(),
                         string(configuration.getCodeIslandConfiguration().getStartCode()),
                         isTrimWhiteSpaceParserFactory.create(configuration),
                         skipWhitespaces(commandParser.create(configuration)),
                         isTrimWhiteSpaceParserFactory.create(configuration),
-                        string(configuration.getCodeIslandConfiguration().getEndCode()),
-                        position()
+                        mandatory(string(configuration.getCodeIslandConfiguration().getEndCode()))
                 ),
                 Transformations.fromContentList(new Function<ListTransformationRequest, CommandJtwigNode>() {
                     @Override
                     public CommandJtwigNode apply(ListTransformationRequest input) {
                         return new CommandJtwigNode(
-                                new Position(input.get(0, Integer.class), input.get(4, Integer.class)),
-                                new TagWhiteSpaceControl(input.get(1, Boolean.class), input.get(3, Boolean.class)),
-                                input.get(2, JtwigCommandDefinition.class));
+                                input.getMatchResult().getRange(),
+                                new TagWhiteSpaceControl(input.get(0, Boolean.class), input.get(2, Boolean.class)),
+                                input.get(1, JtwigCommandDefinition.class));
                     }
                 })
         );

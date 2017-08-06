@@ -4,16 +4,12 @@ import com.google.common.base.Function;
 import org.jtwig.parser.dynamic.config.ParserConfiguration;
 import org.jtwig.parser.dynamic.model.expression.JtwigVariable;
 import org.jtwig.parsing.sequence.TransformSequenceMatcher;
+import org.jtwig.parsing.transform.FromStringTransformation;
 import org.jtwig.parsing.transform.Transformations;
 
-import static org.jtwig.parsing.character.CharacterMatchers.anyOf;
+import static org.jtwig.parsing.character.CharacterMatchers.*;
 import static org.jtwig.parsing.character.CharacterMatchers.or;
-import static org.jtwig.parsing.character.CharacterMatchers.range;
-import static org.jtwig.parsing.sequence.SequenceMatchers.flatten;
-import static org.jtwig.parsing.sequence.SequenceMatchers.match;
-import static org.jtwig.parsing.sequence.SequenceMatchers.sequence;
-import static org.jtwig.parsing.sequence.SequenceMatchers.transform;
-import static org.jtwig.parsing.sequence.SequenceMatchers.zeroOrMore;
+import static org.jtwig.parsing.sequence.SequenceMatchers.*;
 
 public class VariableExpressionJtwigParserFactory implements ExpressionJtwigParserFactory<JtwigVariable> {
     @Override
@@ -38,10 +34,10 @@ public class VariableExpressionJtwigParserFactory implements ExpressionJtwigPars
                                 )
                         )
                 )),
-                Transformations.fromString(new Function<String, JtwigVariable>() {
+                Transformations.fromString(new Function<FromStringTransformation.Request, JtwigVariable>() {
                     @Override
-                    public JtwigVariable apply(String input) {
-                        return new JtwigVariable(input);
+                    public JtwigVariable apply(FromStringTransformation.Request input) {
+                        return new JtwigVariable(input.getResult().getRange(), input.getInput());
                     }
                 })
         );

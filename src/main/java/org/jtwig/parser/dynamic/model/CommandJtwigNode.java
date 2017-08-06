@@ -3,14 +3,14 @@ package org.jtwig.parser.dynamic.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jtwig.parser.dynamic.model.command.JtwigCommandDefinition;
 import org.jtwig.parser.dynamic.model.control.TagWhiteSpaceControl;
-import org.jtwig.parser.dynamic.model.position.Position;
+import org.jtwig.parsing.model.Range;
 
 public class CommandJtwigNode extends JtwigNode {
     private final TagWhiteSpaceControl whiteSpaceControl;
     private final JtwigCommandDefinition commandDefinition;
 
-    public CommandJtwigNode(Position position, TagWhiteSpaceControl whiteSpaceControl, JtwigCommandDefinition commandDefinition) {
-        super(position);
+    public CommandJtwigNode(Range range, TagWhiteSpaceControl whiteSpaceControl, JtwigCommandDefinition commandDefinition) {
+        super(range);
         this.whiteSpaceControl = whiteSpaceControl;
         this.commandDefinition = commandDefinition;
     }

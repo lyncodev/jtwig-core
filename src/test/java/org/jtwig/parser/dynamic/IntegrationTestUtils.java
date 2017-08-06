@@ -2,26 +2,16 @@ package org.jtwig.parser.dynamic;
 
 import org.jtwig.parser.dynamic.config.DefaultParserConfiguration;
 import org.jtwig.parser.dynamic.config.ParserConfiguration;
-import org.jtwig.parser.dynamic.factories.JtwigNodeParserFactory;
-import org.jtwig.parser.dynamic.model.JtwigNode;
 import org.jtwig.parsing.Parser;
-import org.jtwig.parsing.transform.Transformation;
-import org.jtwig.parsing.tree.ContentNode;
-import org.jtwig.parsing.tree.Node;
+import org.jtwig.parsing.factory.SequenceMatcherFactory;
+import org.jtwig.parsing.sequence.TransformSequenceMatcher;
 
 public class IntegrationTestUtils {
 
     private static final DefaultParserConfiguration CONFIGURATION = new DefaultParserConfiguration();
 
-    public static <T extends JtwigNode> T parse (JtwigNodeParserFactory<T> parser, String input) {
-        return new Parser(parser.create(CONFIGURATION))
-                .parse(input)
-                .output(new Transformation<T>() {
-                    @Override
-                    public ContentNode<T> transform(Node node) {
-                        return (ContentNode<T>) node;
-                    }
-                });
+    public static <T> Parser.Result<T> parse (Class<T> type, SequenceMatcherFactory<ParserConfiguration, TransformSequenceMatcher<T>> parser, String input) {
+        return new Parser<>(type, parser.create(CONFIGURATION)).parse(input);
     }
 
     public static ParserConfiguration configuration() {

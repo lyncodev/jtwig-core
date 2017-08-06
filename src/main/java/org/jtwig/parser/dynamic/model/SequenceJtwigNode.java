@@ -1,14 +1,14 @@
 package org.jtwig.parser.dynamic.model;
 
-import org.jtwig.parser.dynamic.model.position.Position;
+import org.jtwig.parsing.model.Range;
 
 import java.util.List;
 
 public class SequenceJtwigNode extends JtwigNode {
     private final List<JtwigNode> nodes;
 
-    public SequenceJtwigNode(Position position, List<JtwigNode> nodes) {
-        super(position);
+    public SequenceJtwigNode(Range range, List<JtwigNode> nodes) {
+        super(range);
         this.nodes = nodes;
     }
 

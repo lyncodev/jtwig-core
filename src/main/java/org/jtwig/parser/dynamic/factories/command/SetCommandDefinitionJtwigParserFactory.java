@@ -22,13 +22,13 @@ public class SetCommandDefinitionJtwigParserFactory implements CommandDefinition
     }
 
     @Override
-    public TransformSequenceMatcher<SetJtwigCommandDefinition> create(ParserConfiguration parserConfiguration) {
+    public TransformSequenceMatcher<SetJtwigCommandDefinition> create(ParserConfiguration configuration) {
         return SequenceMatchers.transform(
                 SequenceMatchers.sequence(
                         SequenceMatchers.string("set"),
-                        SequenceMatchers.skipWhitespaces(variableExpressionJtwigParserFactory.create(parserConfiguration)),
+                        SequenceMatchers.skipWhitespaces(variableExpressionJtwigParserFactory.create(configuration)),
                         SequenceMatchers.string("="),
-                        SequenceMatchers.skipWhitespaces(expressionJtwigParserFactory.create(parserConfiguration))
+                        SequenceMatchers.skipWhitespaces(expressionJtwigParserFactory.create(configuration))
                 ),
                 Transformations.fromContentList(new Function<ListTransformationRequest, SetJtwigCommandDefinition>() {
                     @Override

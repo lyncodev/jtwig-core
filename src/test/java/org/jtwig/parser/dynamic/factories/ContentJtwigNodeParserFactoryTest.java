@@ -14,7 +14,7 @@ public class ContentJtwigNodeParserFactoryTest {
     public void noCode() throws Exception {
         String input = "asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd ";
 
-        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input);
+        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input).output(ContentJtwigNode.class);
 
         assertThat(result.getContent(), is(input));
     }
@@ -23,7 +23,7 @@ public class ContentJtwigNodeParserFactoryTest {
     public void code() throws Exception {
         String input = String.format("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd %s asdasd", IntegrationTestUtils.configuration().getCodeIslandConfiguration().getStartCode());
 
-        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input);
+        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input).output(ContentJtwigNode.class);
 
         assertThat(result.getContent(), is("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd "));
     }
@@ -32,7 +32,7 @@ public class ContentJtwigNodeParserFactoryTest {
     public void output() throws Exception {
         String input = String.format("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd %s asdasd", IntegrationTestUtils.configuration().getCodeIslandConfiguration().getStartOutput());
 
-        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input);
+        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input).output(ContentJtwigNode.class);
 
         assertThat(result.getContent(), is("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd "));
     }
@@ -41,7 +41,7 @@ public class ContentJtwigNodeParserFactoryTest {
     public void comment() throws Exception {
         String input = String.format("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd %s asdasd", IntegrationTestUtils.configuration().getCodeIslandConfiguration().getStartComment());
 
-        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input);
+        ContentJtwigNode result = IntegrationTestUtils.parse(underTest, input).output(ContentJtwigNode.class);
 
         assertThat(result.getContent(), is("asdksaldkasldksaldkaslkdlsak laksdlk asldk asdasd "));
     }
