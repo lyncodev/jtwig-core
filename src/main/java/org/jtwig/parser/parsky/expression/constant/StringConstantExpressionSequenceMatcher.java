@@ -25,10 +25,7 @@ public class StringConstantExpressionSequenceMatcher extends FirstOfSequenceMatc
         return SequenceMatchers.transform(
                 SequenceMatchers.<ParskyContext, Object>sequence(
                         (SequenceMatcher) SequenceMatchers.<ParskyContext>match(CharacterMatchers.character(character)),
-                        (SequenceMatcher) SequenceMatchers.matchedText(SequenceMatchers.until(SequenceMatchers.<ParskyContext, String>firstOf(
-                                SequenceMatchers.<ParskyContext>match(CharacterMatchers.character(character)),
-                                SequenceMatchers.<ParskyContext>match(CharacterMatchers.endOfInput())
-                        ))),
+                        (SequenceMatcher) SequenceMatchers.matchedText(SequenceMatchers.until(SequenceMatchers.<ParskyContext>match(CharacterMatchers.character(character)))),
                         (SequenceMatcher) SequenceMatchers.<ParskyContext>match(CharacterMatchers.character(character))
                 ),
                 Transformations.fromContentList(new Function<ListContentTransformation.Request<ParskyContext, Object>, StringConstantExpression>() {
