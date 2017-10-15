@@ -3,6 +3,7 @@ package org.jtwig.render.config;
 import com.google.common.collect.ImmutableMap;
 import org.jtwig.macro.render.ImportRender;
 import org.jtwig.model.expression.*;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.model.expression.test.*;
 import org.jtwig.model.tree.*;
 import org.jtwig.render.expression.calculator.*;

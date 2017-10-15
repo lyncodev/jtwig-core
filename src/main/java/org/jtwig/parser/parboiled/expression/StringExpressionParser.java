@@ -1,7 +1,7 @@
 package org.jtwig.parser.parboiled.expression;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.jtwig.model.expression.ConstantExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.parser.parboiled.ParserContext;
 import org.jtwig.parser.parboiled.base.BasicParser;
 import org.jtwig.parser.parboiled.base.PositionTrackerParser;

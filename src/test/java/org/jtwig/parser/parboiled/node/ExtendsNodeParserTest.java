@@ -1,6 +1,6 @@
 package org.jtwig.parser.parboiled.node;
 
-import org.jtwig.model.expression.ConstantExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.model.tree.ExtendsNode;
 import org.jtwig.parser.parboiled.AbstractParserTest;
 import org.junit.Test;

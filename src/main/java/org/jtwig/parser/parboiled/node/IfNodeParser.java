@@ -1,6 +1,6 @@
 package org.jtwig.parser.parboiled.node;
 
-import org.jtwig.model.expression.ConstantExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.model.tree.IfNode;
 import org.jtwig.model.tree.IfNode.IfConditionNode;
 import org.jtwig.parser.parboiled.ParserContext;

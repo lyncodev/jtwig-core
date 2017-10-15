@@ -1,7 +1,7 @@
 package org.jtwig.property.resolver.request;
 
 import com.google.common.base.Optional;
-import org.jtwig.model.expression.ConstantExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.model.position.Position;
 import org.junit.Test;
 

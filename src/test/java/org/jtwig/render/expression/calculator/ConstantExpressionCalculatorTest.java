@@ -1,6 +1,6 @@
 package org.jtwig.render.expression.calculator;
 
-import org.jtwig.model.expression.ConstantExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.render.RenderRequest;
 import org.junit.Test;
 

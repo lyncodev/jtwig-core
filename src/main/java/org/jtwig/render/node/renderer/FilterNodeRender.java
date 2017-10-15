@@ -1,8 +1,8 @@
 package org.jtwig.render.node.renderer;
 
-import org.jtwig.model.expression.ConstantExpression;
 import org.jtwig.model.expression.Expression;
 import org.jtwig.model.expression.InjectableExpression;
+import org.jtwig.model.expression.constant.ConstantExpression;
 import org.jtwig.model.tree.FilterNode;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.CalculateExpressionService;
