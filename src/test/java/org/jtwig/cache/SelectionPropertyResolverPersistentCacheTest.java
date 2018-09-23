@@ -27,7 +27,7 @@ public class SelectionPropertyResolverPersistentCacheTest {
     @Before
     public void prepareTestCacheKeys() {
         ResourceReference resourceReference = ResourceReference.inline("{{ item }}");
-        Position position = new Position(resourceReference, 15, 28);
+        Position position = new Position(resourceReference, null, 0);
         Expression expression = new VariableExpression(position, "item");
 
         cacheKeyA = SelectionPropertyResolverCacheKey.createFor(42, expression);

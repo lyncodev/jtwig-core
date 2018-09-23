@@ -78,7 +78,7 @@ public class ListTest extends AbstractIntegrationTest {
     @Test
     public void invalidListMissingClosingParenthesis() throws Exception {
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting end bracket"));
+        expectedException.expectMessage(containsString("Missing end bracket"));
 
         JtwigTemplate.inlineTemplate("{{ ['a'..'c' }}").render(JtwigModel.newModel());
     }
@@ -86,7 +86,7 @@ public class ListTest extends AbstractIntegrationTest {
     @Test
     public void invalidListMissingClosingParenthesisEnumeration() throws Exception {
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting end bracket"));
+        expectedException.expectMessage(containsString("Missing end bracket"));
 
         JtwigTemplate.inlineTemplate("{{ ['a', 'c' }}").render(JtwigModel.newModel());
     }

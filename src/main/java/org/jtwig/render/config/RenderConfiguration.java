@@ -1,7 +1,7 @@
 package org.jtwig.render.config;
 
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.test.TestExpression;
+import org.jtwig.model.expression.operations.test.TestExpression;
 import org.jtwig.model.tree.Node;
 import org.jtwig.render.expression.calculator.ExpressionCalculator;
 import org.jtwig.render.expression.calculator.operation.binary.BinaryOperator;

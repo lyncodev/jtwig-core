@@ -5,21 +5,21 @@ import org.jtwig.JtwigTemplate;
 import org.jtwig.integration.AbstractIntegrationTest;
 import org.jtwig.model.position.Position;
 import org.jtwig.model.tree.Node;
-import org.jtwig.parser.addon.AddonParserProvider;
-import org.jtwig.parser.parboiled.ParserContext;
-import org.jtwig.parser.parboiled.base.LimitsParser;
-import org.jtwig.parser.parboiled.base.PositionTrackerParser;
-import org.jtwig.parser.parboiled.base.SpacingParser;
-import org.jtwig.parser.parboiled.node.AddonParser;
+import org.jtwig.parser.config.DefaultJtwigParserConfiguration;
+import org.jtwig.parser.config.command.CommandNodeConfiguration;
+import org.jtwig.parser.parsky.JtwigGrammar;
+import org.jtwig.parser.parsky.tag.command.CommandNodeFactory;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.node.renderer.NodeRender;
 import org.jtwig.renderable.Renderable;
 import org.jtwig.renderable.impl.StringRenderable;
 import org.junit.Test;
-import org.parboiled.Rule;
-
-import java.util.Collection;
-import java.util.Collections;
+import org.parsky.engine.print.PrintParserEngine;
+import org.parsky.grammar.Grammar;
+import org.parsky.grammar.RuleFactory;
+import org.parsky.grammar.rules.Rule;
+import org.parsky.grammar.rules.Rules;
+import org.parsky.grammar.rules.transform.Transform;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -29,17 +29,24 @@ public class AddOnParserTest extends AbstractIntegrationTest {
     @Test
     public void addOn() throws Exception {
         String result = JtwigTemplate.inlineTemplate("{% hello %}", configuration()
-                .parser().addonParserProviders().add(new AddonParserProvider() {
-                    @Override
-                    public Class<? extends AddonParser> parser() {
-                        return SimpleAddOnParser.class;
-                    }
-
-                    @Override
-                    public Collection<String> keywords() {
-                        return Collections.emptyList();
-                    }
-                }).and().and()
+                .parser().commands().add(new CommandNodeConfiguration(
+                        SimpleAddOn.class,
+                        "hello",
+                        new RuleFactory() {
+                            @Override
+                            public Rule create(Grammar context) {
+                                return Rules.empty();
+                            }
+                        },
+                        new CommandNodeFactory() {
+                            @Override
+                            public Transform.Result create(Position position, Object input) {
+                                return Transform.Result.success(
+                                        new SimpleAddOn(position)
+                                );
+                            }
+                        }
+                )).and().and()
                 .render().nodeRenders().add(SimpleAddOn.class, new AddOnNodeRender()).and().and()
                 .build()).render(JtwigModel.newModel());
 
@@ -54,31 +61,14 @@ public class AddOnParserTest extends AbstractIntegrationTest {
         }
     }
 
-    public static class SimpleAddOnParser extends AddonParser {
-        public SimpleAddOnParser(ParserContext context) {
-            super(SimpleAddOnParser.class, context);
-        }
-
-        @Override
-        public Rule NodeRule() {
-            PositionTrackerParser positionTrackerParser = parserContext().parser(PositionTrackerParser.class);
-            LimitsParser limitsParser = parserContext().parser(LimitsParser.class);
-            SpacingParser spacingParser = parserContext().parser(SpacingParser.class);
-            return Sequence(
-                    positionTrackerParser.PushPosition(),
-                    limitsParser.startCode(),
-                    spacingParser.Spacing(),
-                    String("hello"),
-                    spacingParser.Spacing(),
-                    limitsParser.endCode(),
-                    push(new SimpleAddOn(positionTrackerParser.pop()))
-            );
-        }
-    }
-
     public static class SimpleAddOn extends Node {
         protected SimpleAddOn(Position position) {
             super(position);
         }
+    }
+
+    @Test
+    public void grammar() throws Exception {
+        System.out.println(PrintParserEngine.print(JtwigGrammar.jtwigGrammar().create(new DefaultJtwigParserConfiguration())));
     }
 }

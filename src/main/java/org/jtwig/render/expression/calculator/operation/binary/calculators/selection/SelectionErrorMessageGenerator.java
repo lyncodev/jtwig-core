@@ -2,7 +2,7 @@ package org.jtwig.render.expression.calculator.operation.binary.calculators.sele
 
 import com.google.common.base.Optional;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.FunctionExpression;
+import org.jtwig.model.expression.operations.FunctionExpression;
 import org.jtwig.model.expression.VariableExpression;
 import org.jtwig.model.expression.constant.ConstantExpression;
 

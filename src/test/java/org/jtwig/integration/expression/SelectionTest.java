@@ -57,7 +57,8 @@ public class SelectionTest extends AbstractIntegrationTest {
     @Test
     public void nestedPropertyResolution() throws Exception {
 
-        String result = JtwigTemplate.inlineTemplate("{{ var.nested.field[0] }}")
+        JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{{ var.nested.field[0] }}");
+        String result = jtwigTemplate
                 .render(newModel().with("var", new TestClass("nani")));
 
         assertThat(result, is("nani"));

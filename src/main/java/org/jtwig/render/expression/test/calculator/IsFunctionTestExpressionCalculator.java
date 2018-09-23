@@ -5,7 +5,7 @@ import com.google.common.base.Supplier;
 import org.jtwig.functions.FunctionArguments;
 import org.jtwig.model.expression.Expression;
 import org.jtwig.model.expression.VariableExpression;
-import org.jtwig.model.expression.test.IsFunctionTestExpression;
+import org.jtwig.model.expression.operations.test.IsFunctionTestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 

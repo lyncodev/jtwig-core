@@ -18,7 +18,7 @@ public class SelectionPropertyResolverCacheKeyTest {
     @Before
     public void prepareTestExpression() {
         ResourceReference resourceReference = ResourceReference.inline("{{ item }}");
-        Position position = new Position(resourceReference, 15, 28);
+        Position position = new Position(resourceReference, null, 0);
         expression = new VariableExpression(position, "item");
     }
 

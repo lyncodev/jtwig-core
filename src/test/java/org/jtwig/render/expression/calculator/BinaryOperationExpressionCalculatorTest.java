@@ -1,6 +1,6 @@
 package org.jtwig.render.expression.calculator;
 
-import org.jtwig.model.expression.BinaryOperationExpression;
+import org.jtwig.model.expression.operations.BinaryOperationExpression;
 import org.jtwig.render.RenderRequest;
 import org.junit.Test;
 

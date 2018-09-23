@@ -1,6 +1,6 @@
 package org.jtwig.model.tree;
 
-import org.jtwig.model.expression.InjectableExpression;
+import org.jtwig.model.expression.operations.InjectableExpression;
 import org.jtwig.model.position.Position;
 
 public class FilterNode extends ContentNode {

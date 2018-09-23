@@ -2,7 +2,7 @@ package org.jtwig.render.expression.test.calculator;
 
 import org.jtwig.exceptions.CalculationException;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.test.DivisibleByTestExpression;
+import org.jtwig.model.expression.operations.test.DivisibleByTestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.CalculateExpressionService;

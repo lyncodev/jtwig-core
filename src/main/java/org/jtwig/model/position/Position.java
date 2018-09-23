@@ -1,28 +1,53 @@
 package org.jtwig.model.position;
 
+import org.apache.commons.lang3.tuple.Pair;
+import org.jtwig.parser.parsky.ParserContext;
 import org.jtwig.resource.reference.ResourceReference;
+import org.parsky.engine.ParserRequest;
+import org.parsky.error.ExcerptService;
+import org.parsky.error.PositionService;
 
 public class Position {
+    private static final PositionService positionService = new PositionService();
+    private static final ExcerptService excerptService = new ExcerptService();
+    public static Position position (ParserRequest request) {
+        return new Position(
+                request.getContext().peek(ParserContext.class).get().getResourceReference(),
+                request.getContent(),
+                request.getOffset()
+        );
+    }
+
     private final ResourceReference resource;
-    private final int line;
-    private final int column;
+    private final char[] content;
+    private final int offset;
 
-    public Position(ResourceReference resource, int line, int column) {
+    public Position(ResourceReference resource, char[] content, int offset) {
         this.resource = resource;
-        this.line = line;
-        this.column = column;
+        this.content = content;
+        this.offset = offset;
     }
 
-    public int getLine() {
-        return line;
+    public ResourceReference getResource() {
+        return resource;
     }
 
-    public int getColumn() {
-        return column;
+    public char[] getContent() {
+        return content;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 
     @Override
     public String toString() {
-        return String.format("%s (Line: %d, Column: %d)", resource, line, column);
+        Pair<Integer, Integer> position = positionService.position(content, offset);
+        return String.format("%s (Line: %d, Column: %d):\n%s",
+                resource,
+                position.getLeft(),
+                position.getRight(),
+                excerptService.excerpt(content, offset)
+        );
     }
 }

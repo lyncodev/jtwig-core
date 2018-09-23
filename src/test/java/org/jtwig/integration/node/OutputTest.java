@@ -18,7 +18,7 @@ public class OutputTest extends AbstractIntegrationTest {
 
     @Test
     public void output() throws Exception {
-        JtwigTemplate template = JtwigTemplate.inlineTemplate(" {{ variable }} ");
+        JtwigTemplate template = JtwigTemplate.inlineTemplate(" {{variable}} ");
 
         String result = template.render(newModel().with("variable", "hello"));
 
@@ -56,7 +56,7 @@ public class OutputTest extends AbstractIntegrationTest {
     public void outputWithoutEndCodeIsland() throws Exception {
         JtwigTemplate template = JtwigTemplate.inlineTemplate(" {{- variable } ");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting end of output code island"));
+        expectedException.expectMessage(containsString("Code island not closed"));
 
         template.render(newModel());
     }

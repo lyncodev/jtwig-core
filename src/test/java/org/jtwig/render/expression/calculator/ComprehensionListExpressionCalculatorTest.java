@@ -2,7 +2,7 @@ package org.jtwig.render.expression.calculator;
 
 import com.google.common.base.Optional;
 import org.jtwig.exceptions.CalculationException;
-import org.jtwig.model.expression.ComprehensionListExpression;
+import org.jtwig.model.expression.collections.ComprehensionListExpression;
 import org.jtwig.model.expression.Expression;
 import org.jtwig.render.RenderRequest;
 import org.junit.Rule;

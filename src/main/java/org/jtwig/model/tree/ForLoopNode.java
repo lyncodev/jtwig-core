@@ -9,17 +9,38 @@ import org.jtwig.model.position.Position;
 public class ForLoopNode extends ContentNode {
     private final Optional<VariableExpression> keyVariableExpression;
     private final VariableExpression variableExpression;
+    public static ForLoopNode create(Position position, VariableExpression keyVariableExpression, VariableExpression variableExpression, Expression expression, Node content) {
+        if (variableExpression == null) {
+            return new ForLoopNode(
+                    position,
+                    keyVariableExpression,
+                    expression,
+                    content
+            );
+        } else {
+            return new ForLoopNode(
+                    position,
+                    keyVariableExpression,
+                    variableExpression,
+                    expression,
+                    content
+            );
+        }
+    }
+
     private final Expression expression;
 
     public ForLoopNode(Position position, VariableExpression keyVariableExpression, VariableExpression variableExpression, Expression expression, Node content) {
         super(position, content);
-        if (variableExpression == null) {
-            this.variableExpression = keyVariableExpression;
-            this.keyVariableExpression = Optional.absent();
-        } else {
-            this.keyVariableExpression = Optional.of(keyVariableExpression);
-            this.variableExpression = variableExpression;
-        }
+        this.keyVariableExpression = Optional.fromNullable(keyVariableExpression);
+        this.variableExpression = variableExpression;
+        this.expression = expression;
+    }
+
+    public ForLoopNode(Position position, VariableExpression variableExpression, Expression expression, Node content) {
+        super(position, content);
+        this.keyVariableExpression = Optional.absent();
+        this.variableExpression = variableExpression;
         this.expression = expression;
     }
 
@@ -34,5 +55,4 @@ public class ForLoopNode extends ContentNode {
     public Optional<VariableExpression> getKeyVariableExpression() {
         return keyVariableExpression;
     }
-
 }

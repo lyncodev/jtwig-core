@@ -1,5 +1,7 @@
 package org.jtwig.model.expression;
 
+import org.jtwig.model.expression.operations.FunctionExpression;
+import org.jtwig.model.expression.operations.InjectableExpression;
 import org.jtwig.model.position.Position;
 
 import java.util.Collections;

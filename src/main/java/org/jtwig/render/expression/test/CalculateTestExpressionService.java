@@ -2,7 +2,7 @@ package org.jtwig.render.expression.test;
 
 import com.google.common.base.Optional;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.test.TestExpression;
+import org.jtwig.model.expression.operations.test.TestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.test.calculator.TestExpressionCalculator;

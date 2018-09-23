@@ -39,7 +39,7 @@ public class SetTest extends AbstractIntegrationTest {
     public void setNotEnding() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate(" {%- set variable = 1 {{ variable }}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting end of set code island"));
+        expectedException.expectMessage(containsString("Code island not closed"));
 
         jtwigTemplate.render(newModel());
     }

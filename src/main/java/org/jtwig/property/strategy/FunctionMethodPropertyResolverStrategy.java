@@ -2,7 +2,7 @@ package org.jtwig.property.strategy;
 
 import com.google.common.base.Optional;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.FunctionExpression;
+import org.jtwig.model.expression.operations.FunctionExpression;
 import org.jtwig.property.resolver.PropertyResolver;
 import org.jtwig.property.strategy.method.FunctionArgumentCalculator;
 import org.jtwig.property.strategy.method.MethodPropertyResolverFactory;

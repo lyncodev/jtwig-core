@@ -4,10 +4,9 @@ import org.jtwig.escape.EscapeEngine;
 import org.jtwig.extension.Extension;
 import org.jtwig.functions.JtwigFunction;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.test.TestExpression;
+import org.jtwig.model.expression.operations.test.TestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.model.tree.Node;
-import org.jtwig.parser.addon.AddonParserProvider;
 import org.jtwig.parser.config.JtwigParserConfiguration;
 import org.jtwig.property.resolver.PropertyResolver;
 import org.jtwig.property.selection.cache.SelectionPropertyResolverCache;
@@ -52,7 +51,6 @@ public class EnvironmentConfigurationBuilderTest {
 
     private final UnaryOperator unaryOperator = mock(UnaryOperator.class);
     private final BinaryOperator binaryOperator = mock(BinaryOperator.class);
-    private final AddonParserProvider addonParserProvider = mock(AddonParserProvider.class);
 
     @Test
     public void cloneConstructor() throws Exception {
@@ -81,7 +79,6 @@ public class EnvironmentConfigurationBuilderTest {
                 .withStartOutput("{{").withEndOutput("}}")
                 .withStartComment("{#").withEndComment("#}")
                 .and()
-                .addonParserProviders().add(customAddonParser()).and()
                 .binaryOperators().add(customBinaryOperator()).and()
                 .unaryOperators().add(customUnaryOperator()).and()
                 .withoutTemplateCache()
@@ -89,13 +86,12 @@ public class EnvironmentConfigurationBuilderTest {
                 .build();
 
         JtwigParserConfiguration parser = configuration.getJtwigParserConfiguration();
-        assertThat(parser.getSyntaxConfiguration().getStartCode(), is("{%"));
-        assertThat(parser.getSyntaxConfiguration().getEndCode(), is("%}"));
-        assertThat(parser.getSyntaxConfiguration().getStartOutput(), is("{{"));
-        assertThat(parser.getSyntaxConfiguration().getEndOutput(), is("}}"));
-        assertThat(parser.getSyntaxConfiguration().getStartComment(), is("{#"));
-        assertThat(parser.getSyntaxConfiguration().getEndComment(), is("#}"));
-        assertThat(parser.getAddonParserProviders(), hasItem(addonParserProvider));
+        assertThat(parser.getSyntax().getStartCode(), is("{%"));
+        assertThat(parser.getSyntax().getEndCode(), is("%}"));
+        assertThat(parser.getSyntax().getStartOutput(), is("{{"));
+        assertThat(parser.getSyntax().getEndOutput(), is("}}"));
+        assertThat(parser.getSyntax().getStartComment(), is("{#"));
+        assertThat(parser.getSyntax().getEndComment(), is("#}"));
         assertThat(parser.getBinaryOperators(), hasItem(binaryOperator));
         assertThat(parser.getUnaryOperators(), hasItem(unaryOperator));
         assertThat(parser.getTemplateCache().isPresent(), is(false));
@@ -323,10 +319,6 @@ public class EnvironmentConfigurationBuilderTest {
 
     private BinaryOperator customBinaryOperator() {
         return binaryOperator;
-    }
-
-    private AddonParserProvider customAddonParser() {
-        return addonParserProvider;
     }
 
     public static class CustomNode extends Node {

@@ -121,7 +121,7 @@ public class ExtendsTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void invalidExtendsBlockMissingEndCode() throws Exception {
+    public void  invalidExtendsBlockMissingEndCode() throws Exception {
         expectedException.expect(ParseException.class);
         expectedException.expectMessage(containsString("Code island not closed"));
 
@@ -132,7 +132,7 @@ public class ExtendsTest extends AbstractIntegrationTest {
     @Test
     public void invalidInnerElement() throws Exception {
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Extends templates only allow you to specify either block or set constructs"));
+        expectedException.expectMessage(containsString("Extends templates only allows block, set and import constructs"));
 
         JtwigTemplate.inlineTemplate("{% extends 'asdasd' %}{% if (true) %}{% endif %}")
                 .render(JtwigModel.newModel());

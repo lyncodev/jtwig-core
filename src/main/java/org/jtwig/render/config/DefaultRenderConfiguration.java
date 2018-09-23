@@ -2,9 +2,14 @@ package org.jtwig.render.config;
 
 import com.google.common.collect.ImmutableMap;
 import org.jtwig.macro.render.ImportRender;
-import org.jtwig.model.expression.*;
-import org.jtwig.model.expression.constant.ConstantExpression;
-import org.jtwig.model.expression.test.*;
+import org.jtwig.model.expression.Expression;
+import org.jtwig.model.expression.VariableExpression;
+import org.jtwig.model.expression.collections.ComprehensionListExpression;
+import org.jtwig.model.expression.collections.EnumeratedListExpression;
+import org.jtwig.model.expression.collections.MapExpression;
+import org.jtwig.model.expression.constant.*;
+import org.jtwig.model.expression.operations.*;
+import org.jtwig.model.expression.operations.test.*;
 import org.jtwig.model.tree.*;
 import org.jtwig.render.expression.calculator.*;
 import org.jtwig.render.expression.calculator.operation.binary.BinaryOperator;
@@ -54,8 +59,13 @@ public class DefaultRenderConfiguration extends RenderConfiguration {
 
                 ImmutableMap.<Class<? extends Expression>, ExpressionCalculator>builder()
                         .put(ConstantExpression.class, new ConstantExpressionCalculator())
+                        .put(NumberConstantExpression.class, new ConstantExpressionCalculator())
+                        .put(StringConstantExpression.class, new ConstantExpressionCalculator())
+                        .put(BooleanConstantExpression.class, new ConstantExpressionCalculator())
+                        .put(NullConstantExpression.class, new ConstantExpressionCalculator())
                         .put(VariableExpression.class, new VariableExpressionCalculator())
                         .put(BinaryOperationExpression.class, new BinaryOperationExpressionCalculator())
+                        .put(SelectionExpression.class, new BinaryOperationExpressionCalculator())
                         .put(FunctionExpression.class, new FunctionExpressionCalculator(new FunctionArgumentsFactory()))
                         .put(MapExpression.class, new MapExpressionCalculator())
                         .put(ComprehensionListExpression.class, new ComprehensionListExpressionCalculator())

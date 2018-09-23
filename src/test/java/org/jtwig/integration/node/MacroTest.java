@@ -85,7 +85,7 @@ public class MacroTest extends AbstractIntegrationTest {
     @Test
     public void macroMissingEndTag() throws Exception {
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Missing macroend tag"));
+        expectedException.expectMessage(containsString("Missing endblock tag"));
 
         JtwigTemplate.inlineTemplate("{% macro name () %}")
                 .render(JtwigModel.newModel());

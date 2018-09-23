@@ -1,6 +1,7 @@
 package org.jtwig.model.expression;
 
 import org.jtwig.exceptions.CalculationException;
+import org.jtwig.model.expression.operations.BinaryOperationExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.expression.calculator.operation.binary.BinaryOperator;
 import org.junit.Rule;

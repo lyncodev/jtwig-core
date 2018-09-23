@@ -1,7 +1,7 @@
 package org.jtwig.render.expression.calculator;
 
 import org.jtwig.exceptions.CalculationException;
-import org.jtwig.model.expression.MapSelectionExpression;
+import org.jtwig.model.expression.operations.MapSelectionExpression;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.CalculateExpressionService;
 import org.jtwig.value.WrappedCollection;

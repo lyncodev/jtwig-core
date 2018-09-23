@@ -3,7 +3,7 @@ package org.jtwig.property.strategy;
 import com.google.common.base.Optional;
 import org.jtwig.macro.ImportedMacros;
 import org.jtwig.macro.render.MacroRender;
-import org.jtwig.model.expression.FunctionExpression;
+import org.jtwig.model.expression.operations.FunctionExpression;
 import org.jtwig.property.resolver.MacroPropertyResolver;
 import org.jtwig.property.resolver.PropertyResolver;
 

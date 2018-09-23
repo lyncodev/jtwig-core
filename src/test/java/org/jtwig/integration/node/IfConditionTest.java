@@ -101,7 +101,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void ifConditionWithoutExpression() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if ()%}ko{% endif %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting an expression together with the if construction"));
+        expectedException.expectMessage(containsString("Expecting conditional expression"));
         jtwigTemplate.render(newModel());
     }
 
@@ -109,7 +109,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void ifConditionWithoutEndCode() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (true) ko{% endif %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("If condition code island not closed"));
+        expectedException.expectMessage(containsString("Code island not closed"));
         jtwigTemplate.render(newModel());
     }
 
@@ -117,7 +117,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void ifConditionWithoutEndIfEndCode() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (true) %}ko{% endif");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("If condition endif code island not closed"));
+        expectedException.expectMessage(containsString("Code island not closed"));
         jtwigTemplate.render(newModel());
     }
 
@@ -126,7 +126,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void elseIfConditionWithoutExpression() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (true) %}{% elseif ()%}ko{% endif %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting an expression together with the if construction"));
+        expectedException.expectMessage(containsString("Expecting else if conditional expression"));
         jtwigTemplate.render(newModel());
     }
 
@@ -134,7 +134,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void elseIfConditionWithoutEndingParentheses() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (true) %}{% elseif (true %}ko{% endif %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Expecting an expression together with the if construction"));
+        expectedException.expectMessage(containsString("Uneven parentheses"));
         jtwigTemplate.render(newModel());
     }
 
@@ -142,7 +142,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
     public void elseIfConditionWithoutEndCode() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (true) %}{% elseif (true) ko{% endif %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("If condition code island not closed"));
+        expectedException.expectMessage(containsString("Code island not closed"));
         jtwigTemplate.render(newModel());
     }
 
@@ -160,7 +160,7 @@ public class IfConditionTest extends AbstractIntegrationTest {
         // For the time being we will use this, but we might want to improve our messages and try to check the if syntax
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% if (false) %}ko");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Missing endif tag"));
+        expectedException.expectMessage(containsString("Missing endblock tag"));
         jtwigTemplate.render(newModel());
     }
 }

@@ -21,7 +21,7 @@ import static org.jtwig.environment.EnvironmentConfigurationBuilder.configuratio
 public class CompositionTest extends AbstractIntegrationTest {
     @Test
     public void compose() throws Exception {
-        String result = JtwigTemplate.inlineTemplate("{{ [1..10] | sum }}", configuration()
+        String result = JtwigTemplate.inlineTemplate("{{ 1..10 | sum }}", configuration()
                 .functions().add(sumFunction()).and().build())
                 .render(JtwigModel.newModel());
 
@@ -30,7 +30,7 @@ public class CompositionTest extends AbstractIntegrationTest {
 
     @Test
     public void composeWithFunctionWithParenthesis() throws Exception {
-        String result = JtwigTemplate.inlineTemplate("{{ [1..10] | sum() }}", configuration()
+        String result = JtwigTemplate.inlineTemplate("{{ 1..10 | sum() }}", configuration()
                 .functions().add(sumFunction()).and().build())
                 .render(JtwigModel.newModel());
 

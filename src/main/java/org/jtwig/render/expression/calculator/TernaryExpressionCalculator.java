@@ -1,6 +1,6 @@
 package org.jtwig.render.expression.calculator;
 
-import org.jtwig.model.expression.TernaryOperationExpression;
+import org.jtwig.model.expression.operations.TernaryOperationExpression;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.CalculateExpressionService;
 import org.jtwig.value.convert.Converter;

@@ -1,7 +1,7 @@
 package org.jtwig.render.expression.test.calculator;
 
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.test.IsFunctionTestExpression;
+import org.jtwig.model.expression.operations.test.IsFunctionTestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 import org.junit.Test;

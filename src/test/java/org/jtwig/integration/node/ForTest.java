@@ -115,7 +115,7 @@ public class ForTest extends AbstractIntegrationTest {
     public void invalidForMissingEndCode() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% for i in list ");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Malformed for loop start syntax, missing code island ending symbol"));
+        expectedException.expectMessage(containsString("Code island not closed"));
 
         jtwigTemplate.render(newModel());
     }
@@ -124,7 +124,7 @@ public class ForTest extends AbstractIntegrationTest {
     public void invalidEndForMissingEndCode() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% for i in list %}{% endfor ");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Malformed for loop end syntax, missing code island ending symbol"));
+        expectedException.expectMessage(containsString("Code island not closed"));
 
         jtwigTemplate.render(newModel());
     }
@@ -142,7 +142,7 @@ public class ForTest extends AbstractIntegrationTest {
     public void invalidForMissingEndTag() throws Exception {
         JtwigTemplate jtwigTemplate = JtwigTemplate.inlineTemplate("{% for k in list %}");
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Missing endfor tag"));
+        expectedException.expectMessage(containsString("Missing endblock tag"));
 
         jtwigTemplate.render(newModel());
     }

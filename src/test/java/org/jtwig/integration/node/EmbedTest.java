@@ -100,7 +100,7 @@ public class EmbedTest extends AbstractIntegrationTest {
     @Test
     public void embedMissingEndEmbeded() throws Exception {
         expectedException.expect(ParseException.class);
-        expectedException.expectMessage(containsString("Embed construct can only contain block elements. You might be missing the endembed tag."));
+        expectedException.expectMessage(containsString("Missing endblock tag"));
 
         JtwigTemplate.inlineTemplate("{% embed 'asdasd' %}")
                 .render(JtwigModel.newModel());

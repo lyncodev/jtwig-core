@@ -4,16 +4,17 @@ import org.jtwig.model.position.Position;
 import org.jtwig.model.tree.visitor.NodeVisitor;
 
 import java.util.Collection;
+import java.util.List;
 
 public class CompositeNode extends Node {
-    private final Collection<Node> nodes;
+    private final List<Node> nodes;
 
-    public CompositeNode(Position position, Collection<Node> nodes) {
+    public CompositeNode(Position position, List<Node> nodes) {
         super(position);
         this.nodes = nodes;
     }
 
-    public Collection<Node> getNodes() {
+    public List<Node> getNodes() {
         return nodes;
     }
 

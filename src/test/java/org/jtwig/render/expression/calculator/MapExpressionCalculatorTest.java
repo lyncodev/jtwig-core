@@ -2,7 +2,7 @@ package org.jtwig.render.expression.calculator;
 
 import com.google.common.collect.ImmutableMap;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.MapExpression;
+import org.jtwig.model.expression.collections.MapExpression;
 import org.jtwig.render.RenderRequest;
 import org.junit.Test;
 

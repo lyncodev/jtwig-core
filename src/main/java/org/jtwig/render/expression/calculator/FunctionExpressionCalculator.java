@@ -5,7 +5,7 @@ import com.google.common.base.Supplier;
 import org.jtwig.exceptions.CalculationException;
 import org.jtwig.functions.FunctionArguments;
 import org.jtwig.functions.resolver.FunctionResolver;
-import org.jtwig.model.expression.FunctionExpression;
+import org.jtwig.model.expression.operations.FunctionExpression;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.util.ErrorMessageFormatter;
 

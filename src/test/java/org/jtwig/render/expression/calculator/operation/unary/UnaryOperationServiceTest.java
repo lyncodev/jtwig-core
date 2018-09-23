@@ -3,7 +3,7 @@ package org.jtwig.render.expression.calculator.operation.unary;
 import com.google.common.base.Optional;
 import org.jtwig.exceptions.CalculationException;
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.UnaryOperationExpression;
+import org.jtwig.model.expression.operations.UnaryOperationExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 import org.jtwig.render.expression.calculator.operation.unary.calculators.UnaryOperationCalculator;

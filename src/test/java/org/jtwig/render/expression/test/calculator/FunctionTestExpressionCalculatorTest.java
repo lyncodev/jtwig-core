@@ -1,8 +1,8 @@
 package org.jtwig.render.expression.test.calculator;
 
 import org.jtwig.model.expression.Expression;
-import org.jtwig.model.expression.InjectableExpression;
-import org.jtwig.model.expression.test.FunctionTestExpression;
+import org.jtwig.model.expression.operations.InjectableExpression;
+import org.jtwig.model.expression.operations.test.FunctionTestExpression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
 import org.junit.Test;

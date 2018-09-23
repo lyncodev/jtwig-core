@@ -1,7 +1,7 @@
 package org.jtwig.render.expression.calculator.operation.binary;
 
 import com.google.common.base.Optional;
-import org.jtwig.model.expression.BinaryOperationExpression;
+import org.jtwig.model.expression.operations.BinaryOperationExpression;
 import org.jtwig.model.expression.Expression;
 import org.jtwig.model.position.Position;
 import org.jtwig.render.RenderRequest;
